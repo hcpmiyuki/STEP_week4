@@ -14,8 +14,10 @@ def name_to_user_id(name):
         
 # detect steps from user to jacob based on user_id
 def detect_steps_to_jacob(user_id):
-    search_deque = deque()    # make new que
+    search_deque = deque()# make new que
+    search_deque += [user_id]
     searched = []    # checked persons list
+    data = {user_id: []}
     graph_table = pickle.load(open("sns_links_graph_table.pickle", "rb"))
     
     if user_id in graph_table:
@@ -29,11 +31,14 @@ def detect_steps_to_jacob(user_id):
         if user not in searched:
             searched.append(user)
             if user == 23:
-                print("steps from you to jacob:", len(searched))
-                print("routes:", searched)
+                print("steps from you to jacob:", len(data[user]))
                 return True
             else:
                 search_deque += graph_table[user]
+                for id in graph_table[user]:
+                    if id not in data:
+                        data[id] = data[user] + [user]
+
     return False
 
 while True:
