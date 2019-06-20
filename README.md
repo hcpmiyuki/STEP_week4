@@ -11,7 +11,7 @@
 
 ### Rule
 + This is a game that you should try to make steps from start_word to end_word: A <= steps <= B.
-+ ...英語がとても苦手なので日本語で説明します。これはstart_wordからend_wordまでのステップ数が範囲内に収まるようにするゲームです。
++ ...英語がとても苦手なので日本語で説明します。これはstart_wordからend_wordまでの最短ステップ数が範囲内に収まるようにするゲームです。
 + 範囲というのは最初のターンでは0以上1000000以下でそれ以降は＜前のターンのステップ数＞以上＜前のターンのステップ数*10＞以下となります。
 + 最初のターンではstart_wordはランダムに選ばれてend_wordは自分で入力します。次のターンでは前のターンでend_wordだったものがstart_wordになり、またend_wordを入力します。(しりとりみたいな感じです)
 + 処理に時間がかかりますが、気長にお待ちください:)

@@ -17,17 +17,23 @@ def word_to_id(word):
     # word to word_id
     if word in pages:
         word_id = pages[word]
+        return word_id
     else:
         print("the word is not in wikipedia")
-        
-    return word_id
-    
-    
+        return False
+
+
 def detect_steps_from_start_to_end(s_word_id, e_word_id):
     search_deque = deque()    # make new que
+    search_deque += [s_word_id]
     searched = []    # checked persons list
+    data = {s_word_id: []}
     graph_table = pickle.load(open("wiki_links_graph_table.pickle", "rb"))
     
+    if e_word_id not in graph_table:
+        print("the end_word is not linked")
+        return False
+
     if s_word_id in graph_table:
         search_deque += graph_table[s_word_id]    # add all adjacent nodes to search queue
     else:
@@ -39,10 +45,13 @@ def detect_steps_from_start_to_end(s_word_id, e_word_id):
         if word_id not in searched:
             searched.append(word_id)
             if word_id == e_word_id:
-                return len(searched)
+                return len(data[word_id])
             else:
                 if word_id in graph_table:
                     search_deque += graph_table[word_id]
+                    for id in graph_table[word_id]:
+                        if id not in data:
+                            data[id] = data[word_id] + [word_id]
     return False
     
 
@@ -60,7 +69,8 @@ def success_message(steps, end_word):
     
 
 def failure_message(steps):
-    print("game over! this steps are ", steps)
+    if steps != False:
+        print("game over! this steps are ", steps)
 
     
 def wiki_game(acceptable_range, start_word):
@@ -68,6 +78,7 @@ def wiki_game(acceptable_range, start_word):
     s_word_id = word_to_id(start_word)
     e_word_id = word_to_id(end_word) 
     steps = detect_steps_from_start_to_end(s_word_id, e_word_id)
+    print(steps)
     if is_success(steps, acceptable_range):
         success_message(steps, end_word)
         acceptable_range["min"] = steps
