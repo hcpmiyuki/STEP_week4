@@ -5,7 +5,7 @@
 + Run "python3 sns_links/breadth_first_search.py" and input your nickname! Then you can detect the number of steps from you to jacob(shima-san).
 
 ## HW2
-+ Please download some pickle_files from https://drive.google.com/file/d/1SarCevf6IZUQex0ETBHLPxzLdmKR3cu8/view?usp=sharing.
++ Please download two pickle_files from https://drive.google.com/file/d/1SarCevf6IZUQex0ETBHLPxzLdmKR3cu8/view?usp=sharing.
 + And put them in "wikipedia_links".
 + Finally, run "python3 wikipedia_links/wiki_game.py".
 
